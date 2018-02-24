@@ -1,9 +1,9 @@
 import React from 'react'
-import actionFor from '../actionCreators'
+import { vote } from '../reducers/anecdoteReducer'
 import Anecdote from './Anecdote'
 
-class Anecdotes extends React.Component {
-    vote = (id) => () => { this.props.store.dispatch(actionFor.vote(id)) }
+class AnecdoteList extends React.Component {
+    vote = (id) => () => { this.props.store.dispatch(vote(id)) }
 
     render() {
         const anecdotes = this.props.store.getState()
@@ -24,4 +24,4 @@ class Anecdotes extends React.Component {
     }
 }
 
-export default Anecdotes
+export default AnecdoteList

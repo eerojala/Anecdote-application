@@ -1,11 +1,11 @@
 import React from 'react'
-import actionFor from '../actionCreators'
+import { anecdoteCreation } from '../reducers/anecdoteReducer'
 
 class AnecdoteForm extends React.Component{
     addAnecdote = (event) => {
         event.preventDefault()
         const content = event.target.anecdote.value
-        this.props.store.dispatch(actionFor.anecdoteCreation(content))
+        this.props.store.dispatch(anecdoteCreation(content))
         event.target.anecdote.value = ''
     }
 
