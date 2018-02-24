@@ -6,7 +6,7 @@ class AnecdoteList extends React.Component {
     vote = (id) => () => { this.props.store.dispatch(vote(id)) }
 
     render() {
-        const anecdotes = this.props.store.getState()
+        const anecdotes = this.props.store.getState().anecdotes
         anecdotes.sort( (a, b) => { return b.votes - a.votes } )
 
         return(
