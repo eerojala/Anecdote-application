@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Notification  store={this.props.store} />
+        <Notification store={this.props.store} />
         <AnecdoteList store={this.props.store} />
         <AnecdoteForm store={this.props.store} />
       </div>

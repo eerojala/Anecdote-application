@@ -1,9 +1,19 @@
 import React from 'react'
 import { vote } from '../reducers/anecdoteReducer'
+import { voteNotification, hideNotification } from '../reducers/notificationReducer'
 import Anecdote from './Anecdote'
 
 class AnecdoteList extends React.Component {
-    vote = (id) => () => { this.props.store.dispatch(vote(id)) }
+    vote = (id) => () => { 
+        this.props.store.dispatch(vote(id))
+        const anecdotes = this.props.store.getState().anecdotes
+        const anecdote = anecdotes.find(a => a.id === id)   
+        this.props.store.dispatch(voteNotification(anecdote.content))
+
+        setTimeout(() => {
+            this.props.store.dispatch(hideNotification())
+        }, 5000)
+    }
 
     render() {
         const anecdotes = this.props.store.getState().anecdotes
