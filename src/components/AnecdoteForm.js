@@ -9,7 +9,7 @@ class AnecdoteForm extends React.Component{
         event.preventDefault()
         const content = event.target.anecdote.value
         event.target.anecdote.value = ''
-        const newAnecdote = await anecdoteService.createNew(content)
+        const newAnecdote = await anecdoteService.create(content)
         this.props.anecdoteCreation(newAnecdote)
         this.props.creationNotification(content)
         
