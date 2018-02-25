@@ -16,7 +16,13 @@ class AnecdoteList extends React.Component {
     }
 
     render() {
-        const anecdotes = this.props.store.getState().anecdotes
+        let anecdotes = this.props.store.getState().anecdotes
+        const filter = this.props.store.getState().filter
+
+        if (filter !== null && filter !== '') {
+            anecdotes = anecdotes.filter( (anecdote) => { return anecdote.content.toUpperCase().includes(filter.toUpperCase()) } )
+        }
+
         anecdotes.sort( (a, b) => { return b.votes - a.votes } )
 
         return(
