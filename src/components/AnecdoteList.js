@@ -7,7 +7,7 @@ import Anecdote from './Anecdote'
 class AnecdoteList extends React.Component {
     vote = (id) => () => { 
         this.props.vote(id)
-        const anecdotes = this.props.anecdotes
+        const anecdotes = this.props.visibleAnecdotes
         const anecdote = anecdotes.find(a => a.id === id)   
         this.props.voteNotification(anecdote.content)
 
@@ -17,18 +17,9 @@ class AnecdoteList extends React.Component {
     }
 
     render() {
-        let anecdotes = this.props.anecdotes
-        const filter = this.props.filter
-
-        if (filter !== null && filter !== '') {
-            anecdotes = anecdotes.filter( (anecdote) => { return anecdote.content.toUpperCase().includes(filter.toUpperCase()) } )
-        }
-
-        anecdotes.sort( (a, b) => { return b.votes - a.votes } )
-
         return(
             <div>
-                {anecdotes.map(anecdote => 
+                {this.props.visibleAnecdotes.map(anecdote => 
                     <Anecdote
                         key={anecdote.id} 
                         anecdote={anecdote} 
@@ -40,10 +31,19 @@ class AnecdoteList extends React.Component {
     }
 }
 
+const anecdotesToShow = (anecdotes, filter) => {
+    anecdotes.sort( (a, b) => { return b.votes - a.votes } )
+
+    if (filter === null || filter === '') {
+        return anecdotes
+    }
+
+    return anecdotes.filter( (anecdote) => { return anecdote.content.toUpperCase().includes(filter.toUpperCase()) } )
+}
+
 const mapStateToProps = (state) => {
     return {
-        anecdotes: state.anecdotes,
-        filter: state.filter
+        visibleAnecdotes: anecdotesToShow(state.anecdotes, state.filter)
     }
 }
 
