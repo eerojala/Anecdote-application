@@ -5,6 +5,7 @@ import About from './components/About'
 import Footer from './components/Footer'
 import AnecdoteForm from './components/AnecdoteForm.js'
 import AnecdoteView from './components/AnecdoteView'
+import Notification from './components/Notification'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -69,7 +70,7 @@ class App extends React.Component {
                   <div>
                     <h1>Software anecdotes</h1>
                     <Menu />
-                    <p>{this.state.notification}</p>
+                    <Notification message={this.state.notification} />
                     <Route exact path="/anecdotes" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
                     <Route path="/createNew" render={({history}) => 
                         <AnecdoteForm addNew={this.addNew} history={history} />}

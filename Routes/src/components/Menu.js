@@ -5,7 +5,7 @@ const Menu = () => (
     <div>    
         <Link to="/anecdotes">Anecdotes</Link>&nbsp;
         <Link to="/createNew">Create new</Link>&nbsp;
-        <Link to="/about">About</Link>&nbsp;
+        <Link to="/about">About</Link>
     </div>
 )
 
