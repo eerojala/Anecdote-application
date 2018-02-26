@@ -1,7 +1,7 @@
 const notificationReducer = (state = null, action) => {
     switch (action.type) {
         case 'SET_NOTIFICATION':
-            return action.notification
+            return action.message
         case 'HIDE_NOTIFICATION':
             return null
         default:
@@ -9,24 +9,19 @@ const notificationReducer = (state = null, action) => {
     }
 }
 
-export const voteNotification = (anecdote) => {
-    return {
-        type: 'SET_NOTIFICATION',
-        notification: `You voted '${anecdote}'`
+export const notification = (message, seconds) => {
+    return async (dispatch) => {
+        dispatch({
+            type: 'SET_NOTIFICATION',
+            message
+        })
+
+        setTimeout(() => {
+            dispatch({
+                type: 'HIDE_NOTIFICATION'
+            })
+        }, seconds * 1000)
     }
 }
-
-export const creationNotification = (anecdote) => {
-    return {
-        type: 'SET_NOTIFICATION',
-        notification: `New anecdote: '${anecdote}'`
-    }
-}
-
-export const hideNotification = () => {
-    return {
-        type: 'HIDE_NOTIFICATION'
-    }
-}
-
+ 
 export default notificationReducer
