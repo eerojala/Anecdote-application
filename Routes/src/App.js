@@ -4,6 +4,7 @@ import AnecdoteList from './components/AnecdoteList'
 import About from './components/About'
 import Footer from './components/Footer'
 import AnecdoteForm from './components/AnecdoteForm.js'
+import AnecdoteView from './components/AnecdoteView'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
@@ -59,9 +60,12 @@ class App extends React.Component {
                   <div>
                     <h1>Software anecdotes</h1>
                     <Menu />
-                    <Route exact path="/" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
-                    <Route path="/createNew" render={() => <AnecdoteForm addNew={this.addNew}/>} />
-                    <Route path="/about" render={() => <About /> } />               
+                    <Route exact path="/anecdotes" render={() => <AnecdoteList anecdotes={this.state.anecdotes} />} />
+                    <Route path="/createNew" render={() => <AnecdoteForm addNew={this.addNew} />} />
+                    <Route path="/about" render={() => <About /> } />
+                    <Route exact path="/anecdotes/:id" render={({match}) => 
+                        <AnecdoteView anecdote={this.anecdoteById(match.params.id)} />} 
+                    />               
                     <Footer />
                   </div>
                 </Router>
