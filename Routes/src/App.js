@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from 'semantic-ui-react'
 import Menu from './components/Menu'
 import AnecdoteList from './components/AnecdoteList'
 import About from './components/About'
@@ -65,7 +66,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <Router>
                   <div>
                     <h1>Software anecdotes</h1>
@@ -82,7 +83,7 @@ class App extends React.Component {
                     <Footer />
                   </div>
                 </Router>
-            </div>
+            </Container>
         )
     }
 }
