@@ -6,11 +6,13 @@ const AnecdoteList = ({ anecdotes }) => (
     <div>
         <h2>Anecdotes</h2>
         <Table>
-            {anecdotes.map(anecdote => <Table.Row>
-                <Table.Cell>
-                    <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
-                </Table.Cell>
-            </Table.Row>)}
+            <Table.Body>
+                {anecdotes.map(anecdote => <Table.Row key={anecdote.id}>
+                    <Table.Cell>
+                        <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
+                    </Table.Cell>
+                </Table.Row>)}
+            </Table.Body>
         </Table>
     </div>
 )
